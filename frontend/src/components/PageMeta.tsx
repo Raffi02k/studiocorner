@@ -19,29 +19,39 @@ export const PageMeta: React.FC<PageMetaProps> = ({
     : `${siteConfig.projectName} | ${siteConfig.tagline}`;
 
   const metaDesc = description || siteConfig.description;
-  const origin = typeof window !== 'undefined' ? window.location.origin : 'https://mnpaintpros.com';
+  const origin = typeof window !== 'undefined' ? window.location.origin : 'https://studiocorner-alpha.vercel.app';
   const canonicalUrl = `${origin}${canonicalPath}`;
+  const ogImageUrl = `${origin}/images/linkpic.png`;
 
   useEffect(() => {
     document.title = fullTitle;
 
-    // Update meta description
-    let descTag = document.querySelector('meta[name="description"]');
-    if (!descTag) {
-      descTag = document.createElement('meta');
-      descTag.setAttribute('name', 'description');
-      document.head.appendChild(descTag);
-    }
-    descTag.setAttribute('content', metaDesc);
+    // Helper to set or create meta tag
+    const setMeta = (attribute: 'name' | 'property', attrValue: string, contentValue: string) => {
+      let tag = document.querySelector(`meta[${attribute}="${attrValue}"]`);
+      if (!tag) {
+        tag = document.createElement('meta');
+        tag.setAttribute(attribute, attrValue);
+        document.head.appendChild(tag);
+      }
+      tag.setAttribute('content', contentValue);
+    };
 
-    // Update robots tag
-    let robotsTag = document.querySelector('meta[name="robots"]');
-    if (!robotsTag) {
-      robotsTag = document.createElement('meta');
-      robotsTag.setAttribute('name', 'robots');
-      document.head.appendChild(robotsTag);
-    }
-    robotsTag.setAttribute('content', noindex ? 'noindex, nofollow' : 'index, follow');
+    // Update meta description & robots
+    setMeta('name', 'description', metaDesc);
+    setMeta('name', 'robots', noindex ? 'noindex, nofollow' : 'index, follow');
+
+    // Update Open Graph tags
+    setMeta('property', 'og:title', fullTitle);
+    setMeta('property', 'og:description', metaDesc);
+    setMeta('property', 'og:url', canonicalUrl);
+    setMeta('property', 'og:image', ogImageUrl);
+    setMeta('property', 'og:image:secure_url', ogImageUrl);
+
+    // Update Twitter Card tags
+    setMeta('name', 'twitter:title', fullTitle);
+    setMeta('name', 'twitter:description', metaDesc);
+    setMeta('name', 'twitter:image', ogImageUrl);
 
     // Update canonical link
     let canonicalLink = document.querySelector('link[rel="canonical"]');
@@ -51,7 +61,7 @@ export const PageMeta: React.FC<PageMetaProps> = ({
       document.head.appendChild(canonicalLink);
     }
     canonicalLink.setAttribute('href', canonicalUrl);
-  }, [fullTitle, metaDesc, canonicalUrl, noindex]);
+  }, [fullTitle, metaDesc, canonicalUrl, ogImageUrl, noindex]);
 
   return null;
 };
