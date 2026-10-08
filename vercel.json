@@ -4,6 +4,7 @@
     "api": {
       "root": "api",
       "runtime": "python",
+      "entrypoint": "index.py",
       "bindings": [
         {
           "type": "service",
