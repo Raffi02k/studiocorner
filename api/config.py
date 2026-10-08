@@ -8,6 +8,7 @@ from pathlib import Path
 @dataclass(frozen=True)
 class Settings:
     environment: str = os.getenv("ENVIRONMENT", "development")
+    backend_url: str = os.getenv("BACKEND_URL", "").strip()
 
     # Form Provider: 'web3forms', 'crm', or 'smtp'
     form_provider: str = os.getenv("FORM_PROVIDER", "").strip().lower()

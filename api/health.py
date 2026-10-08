@@ -16,9 +16,11 @@ class handler(BaseHTTPRequestHandler):
             else:
                 provider = "preview"
 
+        backend_url = os.getenv("BACKEND_URL", "").strip()
         data = {
             "status": "ok",
             "provider": provider,
+            "backend": "bound" if bool(backend_url) else "missing",
             "web3forms": "configured" if bool(os.getenv("WEB3FORMS_ACCESS_KEY")) else "missing",
             "crm": "configured" if bool(os.getenv("CRM_API_URL")) else "missing",
         }

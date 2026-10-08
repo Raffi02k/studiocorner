@@ -138,7 +138,34 @@ class handler(BaseHTTPRequestHandler):
         web3forms_key = os.getenv("WEB3FORMS_ACCESS_KEY", "").strip()
         crm_url = os.getenv("CRM_API_URL", "").strip()
         crm_key = os.getenv("CRM_API_KEY", "").strip()
-        project_id = os.getenv("PROJECT_ID", "mediamagnet-template").strip()
+        backend_url = os.getenv("BACKEND_URL", "").strip()
+        if backend_url:
+            try:
+                target_url = f"{backend_url.rstrip('/')}/api/contact"
+                proxy_req = urllib.request.Request(
+                    target_url,
+                    data=raw_body.encode("utf-8"),
+                    headers={
+                        "Content-Type": "application/json",
+                        "Accept": "application/json",
+                        "User-Agent": "Vercel-API-Service/1.0",
+                    },
+                    method="POST",
+                )
+                with urllib.request.urlopen(proxy_req, timeout=15) as res:
+                    proxy_res = json.loads(res.read().decode("utf-8"))
+                    self._send_json(res.status, proxy_res)
+                    return
+            except urllib.error.HTTPError as http_err:
+                try:
+                    err_body = json.loads(http_err.read().decode("utf-8"))
+                except Exception:
+                    err_body = {"status": "error", "message": f"Backend returned status {http_err.code}"}
+                self._send_json(http_err.code, err_body)
+                return
+            except Exception:
+                # If internal backend is unreachable, gracefully fall through to standard dispatchers
+                pass
 
         # 4. Dispatch: Web3Forms
         if provider == "web3forms" or (not provider and web3forms_key):
