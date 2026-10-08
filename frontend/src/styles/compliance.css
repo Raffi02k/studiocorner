@@ -1,0 +1,451 @@
+/* ==========================================================================
+   COMPLIANCE, PRIVACY, ACCESSIBILITY & FAQ STYLES
+   Inspired by Ellery.se high-end editorial aesthetic
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. COOKIE MODAL & BANNER
+   -------------------------------------------------------------------------- */
+.cookie-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: cookieFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes cookieFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.cookie-modal {
+  position: relative;
+  background-color: #faf7f0;
+  color: #1a1a1a;
+  border-radius: 26px;
+  padding: 36px 36px 32px 36px;
+  max-width: 520px;
+  width: 100%;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  animation: cookieSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes cookieSlideUp {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.cookie-modal__close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.cookie-modal__close:hover {
+  background-color: rgba(0, 0, 0, 0.06);
+  color: #000;
+}
+
+.cookie-modal__title {
+  font-family: var(--font-heading, "Bricolage Grotesque", sans-serif);
+  font-size: 24px;
+  font-weight: 800;
+  color: #111;
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+
+.cookie-modal__subtitle {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+.cookie-modal__options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.cookie-option {
+  background-color: #ffffff;
+  border-radius: 18px;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+}
+
+.cookie-option__content {
+  flex: 1;
+}
+
+.cookie-option__title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 4px;
+}
+
+.cookie-option__desc {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.45;
+}
+
+/* Toggle Switch */
+.cookie-toggle {
+  width: 46px;
+  height: 26px;
+  border-radius: 999px;
+  background-color: #d1cabe;
+  position: relative;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 3px;
+}
+
+.cookie-toggle.is-active,
+.cookie-toggle--disabled {
+  background-color: #212529;
+}
+
+.cookie-toggle--disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.cookie-toggle__thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateX(0);
+}
+
+.cookie-toggle__thumb--active {
+  transform: translateX(20px);
+}
+
+/* Modal Actions */
+.cookie-modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.cookie-btn {
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 12px 22px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.cookie-btn--outline {
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  color: #111;
+}
+
+.cookie-btn--outline:hover {
+  background-color: #f2ede4;
+}
+
+.cookie-btn--primary {
+  background-color: #212529;
+  color: #ffffff;
+}
+
+.cookie-btn--primary:hover {
+  background-color: #000;
+  transform: translateY(-1px);
+}
+
+/* --------------------------------------------------------------------------
+   2. EDITORIAL COMPLIANCE PAGES (Integritet, Tillgänglighet)
+   -------------------------------------------------------------------------- */
+.editorial-page {
+  background-color: #fcfbf7;
+  color: #1a1a1a;
+  min-height: 100vh;
+  padding-bottom: 100px;
+}
+
+.editorial-container {
+  width: 100%;
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.editorial-top-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #777;
+  padding: 120px 0 24px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.editorial-eyebrow {
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #666;
+  margin-bottom: 14px;
+  display: block;
+}
+
+.editorial-title {
+  font-family: var(--font-heading, "Bricolage Grotesque", sans-serif);
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 800;
+  color: #111;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+  margin-bottom: 24px;
+}
+
+.editorial-title .highlight-slate {
+  color: #4b5d49;
+}
+
+.editorial-lead {
+  font-size: 19px;
+  line-height: 1.6;
+  color: #444;
+  margin-bottom: 48px;
+  max-width: 720px;
+}
+
+/* 4 Quick Info Cards Row */
+.editorial-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 72px;
+}
+
+@media (max-width: 900px) {
+  .editorial-summary-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .editorial-summary-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.editorial-summary-card {
+  background-color: #f7f3ec;
+  border-radius: 20px;
+  padding: 24px 20px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.editorial-summary-card__icon {
+  color: #555;
+  margin-bottom: 14px;
+}
+
+.editorial-summary-card__label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #777;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.editorial-summary-card__value {
+  font-size: 15px;
+  font-weight: 700;
+  color: #111;
+  line-height: 1.35;
+}
+
+/* Feature Grid Cards */
+.editorial-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin-top: 28px;
+}
+
+@media (max-width: 680px) {
+  .editorial-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.editorial-feature-card {
+  background-color: #ffffff;
+  border-radius: 18px;
+  padding: 24px;
+  display: flex;
+  gap: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+}
+
+.editorial-feature-card__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background-color: #f2ede4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+  flex-shrink: 0;
+}
+
+.editorial-feature-card__title {
+  font-family: var(--font-heading, sans-serif);
+  font-size: 17px;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 4px;
+}
+
+.editorial-feature-card__desc {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.5;
+}
+
+/* Sections divider */
+.editorial-section {
+  padding: 60px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.editorial-section__title {
+  font-family: var(--font-heading, sans-serif);
+  font-size: clamp(26px, 3.2vw, 38px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #111;
+  margin-bottom: 12px;
+}
+
+.editorial-section__text {
+  font-size: 16px;
+  line-height: 1.65;
+  color: #555;
+  margin-bottom: 24px;
+  max-width: 760px;
+}
+
+/* --------------------------------------------------------------------------
+   3. FAQ PAGE SPECIFIC STYLES
+   -------------------------------------------------------------------------- */
+.faq-category-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.faq-pill {
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  color: #444;
+  transition: all 0.2s ease;
+}
+
+.faq-pill:hover {
+  background-color: #f0ebe2;
+  color: #000;
+}
+
+.faq-pill.is-active {
+  background-color: #181c20;
+  color: #fff;
+  border-color: #181c20;
+}
+
+/* --------------------------------------------------------------------------
+   4. FOOTER COMPLIANCE LINKS
+   -------------------------------------------------------------------------- */
+.footer__compliance-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.footer__compliance-links a,
+.footer__cookie-btn {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.65);
+  text-decoration: none;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+  transition: color 0.2s ease;
+}
+
+.footer__compliance-links a:hover,
+.footer__cookie-btn:hover {
+  color: #ffffff;
+}
+
