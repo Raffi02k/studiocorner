@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles, Shield, Heart, Instagram, Calendar, ArrowUpRight } from 'lucide-react';
+import { Shield, Heart, Instagram, Calendar, ArrowUpRight } from 'lucide-react';
 import { PageMeta } from '../components/PageMeta';
 import { PageHero } from '../components/PageHero';
 import { siteConfig } from '../content/siteContent';
@@ -180,14 +180,6 @@ export const AboutPage: React.FC = () => {
               <h3 style={{ color: '#fff', fontSize: '20px', marginBottom: '10px' }}>Vårdkompetens & NPF</h3>
               <p style={{ color: 'var(--color-dark-muted)', fontSize: '14px', lineHeight: '1.7' }}>
                 Med arbetslivserfarenhet inom vården anpassar vi behandlingen efter dina förutsättningar – t.ex. vid NPF, GAD, OCD eller sensorisk känslighet. Lugn miljö utan stress.
-              </p>
-            </div>
-
-            <div style={{ backgroundColor: 'var(--color-dark-surface)', padding: '32px 28px', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.08)' }}>
-              <Sparkles size={28} color="var(--color-accent)" style={{ marginBottom: '16px' }} />
-              <h3 style={{ color: '#fff', fontSize: '20px', marginBottom: '10px' }}>Kvalitet & Noggrannhet</h3>
-              <p style={{ color: 'var(--color-dark-muted)', fontSize: '14px', lineHeight: '1.7' }}>
-                Vi använder skonsamma kvalitetsprodukter och tar oss den tid som krävs för att du ska få det allra bästa resultatet.
               </p>
             </div>
           </div>
